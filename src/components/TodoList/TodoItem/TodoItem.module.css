@@ -1,0 +1,154 @@
+input {
+  cursor: inherit;
+}
+
+.todoItemContainer {
+  padding: 0 20px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border: solid 1px black;
+  cursor: pointer;
+}
+
+.itemTitle, .itemDescription {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 150px;
+  width: 100%;
+}
+
+.todoItemContainer:not(:last-child) {
+  margin-bottom: 20px;
+}
+
+.todoItemContainer div:not(:last-child) {
+  width: 330px;
+}
+
+.todoItemContainer div:last-child {
+  width: 160px;
+  text-align: end;
+}
+
+.todoCardContainer {
+  width: 500px;
+  opacity: 1;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, 50%);
+  z-index: 10;
+}
+
+.hiddenTodoCardContainer {
+  width: 500px;
+  opacity: 1;
+  display: none;
+  position: absolute;
+  left: 50%;
+  top: 20%;
+  transform: translate(-50%, 50%);
+  z-index: 10;
+}
+
+.todoCard {
+  border-radius: 20px;
+  padding: 20px;
+  width: 500px;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  opacity: 1;
+  position: absolute;
+  animation: show 0.7s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.093),
+    -2px -2px 10px rgba(0, 0, 0, 0.093);
+}
+
+.hiddenTodoCard {
+  border-radius: 20px;
+  padding: 20px;
+  opacity: 0;
+  width: 500px;
+  height: fit-content;
+  background-color: rgb(255, 255, 255);
+  position: absolute;
+  animation: hide 0.7s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.093),
+    -2px -2px 10px rgba(0, 0, 0, 0.093);
+}
+
+.doneStatus {
+  color: green;
+}
+
+.notDoneStatus {
+  color: red;
+}
+
+.title {
+  text-align: center;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.description p:first-child {
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.status {
+  margin-top: 20px;
+}
+
+@keyframes show {
+  0% {
+    transform: scale(0) translateY(-50%);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1) translate(0);
+    opacity: 1;
+  }
+}
+
+@keyframes hide {
+  0% {
+    transform: scale(1) translate(0);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0) translateY(-50%);
+    opacity: 0;
+  }
+}
+
+.buttons {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.closeButton {
+  padding: 5px;
+  border-radius: 5px;
+  transition: transform 0.25s ease;
+}
+
+.delButton {
+  padding: 5px;
+  border-radius: 5px;
+  color: white;
+  background-color: red;
+  transition: transform 0.25s ease;
+}
+
+.closeButton:hover,
+.delButton:hover {
+  transform: scale(1.1);
+}
+
+.closeButton:active,
+.delButton:active {
+  box-shadow: inset 1px 1px 3px black;
+}

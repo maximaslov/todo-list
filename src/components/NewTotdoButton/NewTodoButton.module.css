@@ -1,0 +1,76 @@
+.newTodoBtnContainer {
+  margin: 0 auto;
+  width: 120px;
+  height: 50px;
+  background-color: rgba(0, 157, 255, 0.773);
+  border-radius: 10px;
+  z-index: 2;
+  animation: show 0.7s ease;
+}
+
+@keyframes show {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.hiddenNewTodoBtnContainer {
+  margin: 0 auto;
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: rgba(0, 157, 255, 0.773);
+  transition: transform 0.25s ease;
+  animation: hide 0.7s ease;
+  opacity: 0;
+}
+
+@keyframes hide {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
+
+.newTodoBtn {
+  background: none;
+  border: none;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.hideNewTodoBtn {
+  display: none;
+  cursor: default;
+}
+
+.newTodoBtn p {
+  color: white;
+  font-size: 20px;
+  transition: transform 0.5s;
+  user-select: none;
+}
+
+.newTodoBtnContainer:hover {
+  transition: transform 0.25ms ease;
+}
+
+.newTodoBtn:hover p {
+  transform: scale(1.2);
+}
+
+.newTodoBtnContainer:active {
+  box-shadow: inset 5px 5px 20px rgba(0, 0, 0, 0.591);
+}
