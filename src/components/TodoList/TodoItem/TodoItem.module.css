@@ -9,13 +9,36 @@ input {
   align-items: center;
   border: solid 1px black;
   cursor: pointer;
+  gap: 10px;
 }
 
-.itemTitle, .itemDescription {
+/* .itemTitle {
   display: flex;
   justify-content: flex-start;
   max-width: 150px;
   width: 100%;
+}
+
+.itemDescription {
+  display: flex;
+  justify-content: flex-start;
+  max-width: 230px;
+  width: 100%;
+} */
+
+.todoItemContainer p {
+  max-width: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.input {
+  max-width: 80px;
+  width: 100%;
+  display: flex;
+  justify-content: end;
+  padding-right: 20px;
 }
 
 .todoItemContainer:not(:last-child) {
@@ -32,7 +55,7 @@ input {
 }
 
 .todoCardContainer {
-  width: 500px;
+  width: 300px;
   opacity: 1;
   position: absolute;
   left: 50%;
@@ -42,7 +65,7 @@ input {
 }
 
 .hiddenTodoCardContainer {
-  width: 500px;
+  width: 300px;
   opacity: 1;
   display: none;
   position: absolute;
@@ -55,7 +78,7 @@ input {
 .todoCard {
   border-radius: 20px;
   padding: 20px;
-  width: 500px;
+  width: 260px;
   height: fit-content;
   background-color: rgb(255, 255, 255);
   opacity: 1;
@@ -69,7 +92,7 @@ input {
   border-radius: 20px;
   padding: 20px;
   opacity: 0;
-  width: 500px;
+  width: 260px;
   height: fit-content;
   background-color: rgb(255, 255, 255);
   position: absolute;
@@ -151,4 +174,10 @@ input {
 .closeButton:active,
 .delButton:active {
   box-shadow: inset 1px 1px 3px black;
+}
+
+@media (max-width:650px) {
+  .todoItemContainer p:first-child {
+    max-width: 20px;
+  }
 }

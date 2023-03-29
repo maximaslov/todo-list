@@ -1,9 +1,13 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { TodosContext } from "../../../context/Context";
 import styles from "./TodoItem.module.css";
 
 const TodoItem = ({ title, description, id, status }) => {
   const data = useContext(TodosContext);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [maxLength, setMaxLength] = useState();
+
+  //КОРОЧЕ НУЖНО ПОМЕНЯТЬ maxLength при изменении экрана и сделать перерендер документа.
 
   const onTodoItemClick = (e) => {
     if(!data.showTodoCardContainer && !data.showNewTodoForm) {
@@ -29,7 +33,14 @@ const TodoItem = ({ title, description, id, status }) => {
     }
   };
 
-  const maxLength = 16;
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    }
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   return (
     <div onClick={onTodoItemClick} className={styles.todoItemContainer}>
@@ -37,16 +48,17 @@ const TodoItem = ({ title, description, id, status }) => {
         <p>{id}</p>
       {/* </div> */}
       {/* <div> */}
-        <p className={styles.itemTitle}>{title.length > maxLength ? title.slice(0, 15) + "..." : title}</p>
+        <p className={styles.itemTitle}>{title.length > maxLength ? title.slice(0, maxLength - 1) + "..." : title}</p>
+        {/* <p className={styles.itemTitle}>{width}</p> */}
       {/* </div> */}
       {/* <div> */}
         <p className={styles.itemDescription}>
           {description.length > maxLength
-            ? description.slice(0, 15) + "..."
+            ? description.slice(0, maxLength - 1) + "..."
             : description}
         </p>
       {/* </div> */}
-      {/* <div> */}
+      <div className={styles.input}>
         <input className={styles.checkbox}
           onClick={(e) => e.stopPropagation()}
           checked={status}
@@ -55,7 +67,7 @@ const TodoItem = ({ title, description, id, status }) => {
           name={id}
           id={id}
         />
-      {/* </div> */}
+      </div>
     </div>
   );
 };

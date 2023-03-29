@@ -157,3 +157,10 @@ input::placeholder {
   padding: 5px;
   transform: translate(1px, 1px);
 }
+
+@media (max-width: 414px) {
+  .todoFormContaner {
+    max-width: 300px;
+    margin: -73px auto 0 auto;
+  }
+}

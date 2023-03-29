@@ -1,4 +1,4 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useEffect } from "react";
 
 export const TodosContext = createContext();
 
@@ -96,7 +96,7 @@ const Context = (props) => {
     showNewTodoButton,
     showForm,
     openTodoCard,
-    closeTodoCard
+    closeTodoCard,
   };
 
   return (

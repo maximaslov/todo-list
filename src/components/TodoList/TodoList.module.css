@@ -11,4 +11,22 @@
   align-items: center;
   margin-bottom: 20px;
   color: white;
+  gap: 10px;
+}
+
+.todoItemHeader p {
+  max-width: 100px;
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.todoItemHeader p:last-child {
+  justify-content: end;
+}
+
+@media (max-width:650px) {
+  .todoItemHeader p:first-child {
+    max-width: 20px;
+  }
 }
