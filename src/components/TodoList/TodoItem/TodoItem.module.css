@@ -55,22 +55,20 @@ input {
 }
 
 .todoCardContainer {
-  width: 300px;
   opacity: 1;
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 20%;
+  top: 8%;
   transform: translate(-50%, 50%);
   z-index: 10;
 }
 
 .hiddenTodoCardContainer {
-  width: 300px;
   opacity: 1;
   display: none;
-  position: absolute;
+  position: fixed;
   left: 50%;
-  top: 20%;
+  top: 8%;
   transform: translate(-50%, 50%);
   z-index: 10;
 }
@@ -78,27 +76,27 @@ input {
 .todoCard {
   border-radius: 20px;
   padding: 20px;
-  width: 260px;
+  max-width: 600px;
   height: fit-content;
   background-color: rgb(255, 255, 255);
   opacity: 1;
-  position: absolute;
   animation: show 0.7s ease;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.093),
     -2px -2px 10px rgba(0, 0, 0, 0.093);
+    word-wrap: break-word;
 }
 
 .hiddenTodoCard {
   border-radius: 20px;
   padding: 20px;
-  opacity: 0;
-  width: 260px;
+  max-width: 600px;
+  width: 100%;
   height: fit-content;
   background-color: rgb(255, 255, 255);
-  position: absolute;
   animation: hide 0.7s ease;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.093),
     -2px -2px 10px rgba(0, 0, 0, 0.093);
+  word-wrap: break-word;
 }
 
 .doneStatus {
@@ -179,5 +177,15 @@ input {
 @media (max-width:650px) {
   .todoItemContainer p:first-child {
     max-width: 20px;
+  }
+
+  .todoCard {
+    max-width: 360px;
+  }
+}
+
+@media (max-width:400px) {
+  .todoCard {
+    max-width: 250px;
   }
 }

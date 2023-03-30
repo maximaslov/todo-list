@@ -11,16 +11,23 @@ const NewTodoButton = () => {
   };
 
   return (
-    <div
-      className={
-        data.showNewTodoItemBtn
-          ? styles.newTodoBtnContainer
-          : styles.hiddenNewTodoBtnContainer
-      }
-    >
-      <button onClick={data.showNewTodoItemBtn ? onBtnClick : null} className={!data.hideAddButton ? styles.newTodoBtn : styles.hideNewTodoBtn}>
-        <p>New Todo</p>
-      </button>
+    <div className={styles.background}>
+      <div
+        className={
+          data.showNewTodoItemBtn
+            ? styles.newTodoBtnContainer
+            : styles.hiddenNewTodoBtnContainer
+        }
+      >
+        <button
+          onClick={data.showNewTodoItemBtn ? onBtnClick : null}
+          className={
+            !data.hideAddButton ? styles.newTodoBtn : styles.hideNewTodoBtn
+          }
+        >
+          <p>New Todo</p>
+        </button>
+      </div>
     </div>
   );
 };

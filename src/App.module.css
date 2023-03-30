@@ -1,7 +1,11 @@
+body {
+    background-color: white;
+}
+
 .appWrapper {
     max-width: 1200px;
     margin: 0 auto;
-    height: 100vh;
+    height: 93vh;
     position: relative;
     font-family: 'Roboto', sans-serif;
     padding-top: 20px;

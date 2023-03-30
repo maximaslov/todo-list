@@ -44,14 +44,13 @@ const NewTodoForm = () => {
         <form className={styles.todoForm} onSubmit={formik.handleSubmit}>
           <div>
             <input
-              autoFocus={true}
               className={isTitleError ? styles.inputError : styles.input}
               value={formik.values.title}
               type="text"
               name="title"
               placeholder={
                 isTitleError
-                  ? "The field must not be empty "
+                  ? "The field must not be empty"
                   : "Enter todo title"
               }
               onChange={formik.handleChange}

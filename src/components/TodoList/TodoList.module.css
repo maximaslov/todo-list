@@ -1,10 +1,11 @@
 .todoListContainer {
   width: 100%;
   margin-top: 20px;
+  position: absolute;
 }
 
 .todoItemHeader {
-  background-color: rgba(0, 157, 255, 0.773);
+  background-color: rgb(85 177 248);
   padding: 0 20px;
   display: flex;
   justify-content: space-between;
@@ -12,6 +13,11 @@
   margin-bottom: 20px;
   color: white;
   gap: 10px;
+  position: fixed;
+  top: 40px;
+  margin-top: 40px;
+  left: 8px;
+  right: 8px;
 }
 
 .todoItemHeader p {
@@ -23,6 +29,10 @@
 
 .todoItemHeader p:last-child {
   justify-content: end;
+}
+
+.todoItems {
+  margin: 100px 0 20px 0;
 }
 
 @media (max-width:650px) {

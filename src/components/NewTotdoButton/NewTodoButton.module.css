@@ -1,9 +1,21 @@
+.background {
+  background-color:white;
+  position: fixed;
+  /* top: 2%; */
+  left: 0;
+  right: 0;
+  width: 100%;
+  top: 0;
+  padding-top: 10px;
+  padding-bottom: 20px;
+  z-index: 1;
+  height: 50px;
+}
+
 .newTodoBtnContainer {
   margin: 0 auto;
   width: 120px;
   height: 50px;
-  background-color: rgba(0, 157, 255, 0.773);
-  border-radius: 10px;
   z-index: 2;
   animation: show 0.7s ease;
 }
@@ -21,13 +33,14 @@
 
 .hiddenNewTodoBtnContainer {
   margin: 0 auto;
-  width: 120px;
-  height: 50px;
-  border-radius: 10px;
-  background-color: rgba(0, 157, 255, 0.773);
   transition: transform 0.25s ease;
   animation: hide 0.7s ease;
   opacity: 0;
+  /* position: fixed;
+  top: 2%;
+  left: 0;
+  right: 0;
+  width: 100%; */
 }
 
 @keyframes hide {
@@ -44,11 +57,15 @@
 .newTodoBtn {
   background: none;
   border: none;
-  width: 100%;
-  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
+  width: 120px;
+  height: 50px;
+  border-radius: 10px;
+  background-color: rgba(0, 157, 255, 0.773);
+  margin: 0 auto;
+  
 }
 
 .hideNewTodoBtn {

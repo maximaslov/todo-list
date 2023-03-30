@@ -14,18 +14,20 @@ const TodoList = () => {
         <p>DESCRIPTION</p>
         <p>STATUS</p>
       </div>
-      {data.todos &&
-        data.todos.map((e, i) => {
-          return (
-            <TodoItem
-              key={i}
-              id={i + 1}
-              title={e.title}
-              description={e.description}
-              status={e.status}
-            />
-          );
-        })}
+      <div className={styles.todoItems}>
+        {data.todos &&
+          data.todos.map((e, i) => {
+            return (
+              <TodoItem
+                key={i}
+                id={i + 1}
+                title={e.title}
+                description={e.description}
+                status={e.status}
+              />
+            );
+          })}
+      </div>
     </div>
   );
 };
