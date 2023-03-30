@@ -5,7 +5,7 @@ import styles from "./TodoItem.module.css";
 const TodoItem = ({ title, description, id, status }) => {
   const data = useContext(TodosContext);
   const [width, setWidth] = useState(window.innerWidth);
-  const [maxLength, setMaxLength] = useState();
+  const [maxLength, setMaxLength] = useState(16);
 
   //КОРОЧЕ НУЖНО ПОМЕНЯТЬ maxLength при изменении экрана и сделать перерендер документа.
 
@@ -41,6 +41,14 @@ const TodoItem = ({ title, description, id, status }) => {
     window.addEventListener('resize', handleResize);
     return () => window.removeEventListener('resize', handleResize);
   }, []);
+
+  useEffect(() => {
+    if (width < 600) {
+      setMaxLength(6);
+    } else {
+      setMaxLength(16);
+    }
+  }, [width]);
 
   return (
     <div onClick={onTodoItemClick} className={styles.todoItemContainer}>
