@@ -14,16 +14,22 @@ const NewTodoForm = () => {
 
   const formik = useFormik({
     initialValues: { title: "", description: "" },
-    validationSchema: todoFormSchema,
     onSubmit: (values, { resetForm }) => {
-      const newTodo = {
-        title: values.title,
-        description: values.description,
-        status: false,
-      };
-      const newTodoList = [...data.todos, newTodo];
-      data.onFormSubmit(newTodoList);
-      resetForm();
+      todoFormSchema
+        .validate(values)
+        .then(() => {
+          const newTodo = {
+            title: values.title,
+            description: values.description,
+            status: false,
+          };
+          const newTodoList = [...data.todos, newTodo];
+          data.onFormSubmit(newTodoList);
+          resetForm();
+        })
+        .catch((err) => {
+          data.showError(err);
+        });
     },
   });
 
@@ -38,8 +44,10 @@ const NewTodoForm = () => {
 
   return (
     <div className={styles.todoFormContaner}>
-      <div 
-      className={data.showTodoFormBox ? styles.todoFormBox : styles.hidenTodoFormBox}
+      <div
+        className={
+          data.showTodoFormBox ? styles.todoFormBox : styles.hidenTodoFormBox
+        }
       >
         <form className={styles.todoForm} onSubmit={formik.handleSubmit}>
           <div>

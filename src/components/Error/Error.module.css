@@ -1,0 +1,49 @@
+.error {
+  position: absolute;
+  z-index: 9;
+  padding: 20px;
+  border-radius: 10px;
+  background-color: lightcoral;
+  max-width: 350px;
+  left: 0;
+  right: 0;
+  margin: auto;
+  transform: translateY(-50%);
+  top: 32px;
+  animation: show 3s ease;
+}
+
+.error p {
+  font-size: 18px;
+  color: white;
+  margin: 0 auto;
+}
+
+@keyframes show {
+  0% {
+    transform: translateY(-130px);
+  }
+  5% {
+    transform: translateY(-34px);
+  }
+  10% {
+    transform: translateY(-32px);
+  }
+  25% {
+    transform: translateY(-30px);
+  }
+  85% {
+    transform: translateY(-30px);
+  }
+  100% {
+    transform: translateY(-130px);
+  }
+}
+
+@media (max-width: 1180px) {
+  .error p {
+    font-size: 15px;
+    font-weight: 600;
+    text-align: center;
+  }
+}

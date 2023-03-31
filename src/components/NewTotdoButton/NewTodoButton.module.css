@@ -1,7 +1,6 @@
 .background {
   background-color:white;
   position: fixed;
-  /* top: 2%; */
   left: 0;
   right: 0;
   width: 100%;
@@ -14,7 +13,7 @@
 
 .newTodoBtnContainer {
   margin: 0 auto;
-  width: 120px;
+  width: 125px;
   height: 50px;
   z-index: 2;
   animation: show 0.7s ease;
@@ -36,11 +35,6 @@
   transition: transform 0.25s ease;
   animation: hide 0.7s ease;
   opacity: 0;
-  /* position: fixed;
-  top: 2%;
-  left: 0;
-  right: 0;
-  width: 100%; */
 }
 
 @keyframes hide {

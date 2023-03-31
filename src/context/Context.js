@@ -9,6 +9,9 @@ const Context = (props) => {
   const [showTodoCard, setShowTodoCard] = useState(false);
   const [showTodoFormBox, setShowTodoFormBox] = useState(false);
   const [hideAddButton, setHideAddButton] = useState(false);
+  const [errorMessage, setErrorMessage] = useState(null);
+  const [width, setWidth] = useState(window.innerWidth);
+  const [maxLength, setMaxLength] = useState(16);
   const [todoCardData, setTodoCardData] = useState({
     title: null,
     description: null,
@@ -64,13 +67,37 @@ const Context = (props) => {
   }
 
   const closeTodoCard = () => {
-    setShowTodoCard(false); // в карточке внутри контейнера меняется стиль
+    setShowTodoCard(false);
     setShowTodoFormBox(false);
     showNewTodoButton();
     setTimeout(() => {
-      setShowTodoCardContainer(false); // перестаем отображать контейнер
+      setShowTodoCardContainer(false);
     }, 700);
   }
+
+  const showError = (err) => {
+    setErrorMessage(err.message);
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 2900);
+  }
+
+  useEffect(() => {
+    const handleResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (width < 600) {
+      setMaxLength(6);
+    } else {
+      setMaxLength(16);
+    }
+  }, [width]);
 
   const value = {
     showNewTodoItemBtn,
@@ -97,6 +124,10 @@ const Context = (props) => {
     showForm,
     openTodoCard,
     closeTodoCard,
+    errorMessage, 
+    setErrorMessage,
+    showError,
+    maxLength
   };
 
   return (
