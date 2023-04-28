@@ -24,7 +24,7 @@ button {
   border-radius: 20px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.093);
   background-color: white;
-  animation: show 0.7s ease;
+  animation: show 0.3s ease;
 }
 
 .hidenTodoFormBox {
@@ -33,7 +33,7 @@ button {
   border-radius: 20px;
   box-shadow: 5px 5px 10px rgba(0, 0, 0, 0.093);
   background-color: white;
-  animation: hide 0.7s ease;
+  animation: hide 0.3s ease;
 }
 
 @keyframes show {

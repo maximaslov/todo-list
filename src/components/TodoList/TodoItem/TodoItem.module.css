@@ -23,7 +23,6 @@ input[type="checkbox"]:checked::before {
   width: 100%;
   height: 100%;
   text-align: center;
-  font-size: 16px;
   line-height: 1.5;
   color: white;
   background-color: green;
@@ -95,7 +94,7 @@ input[type="checkbox"]:checked::before {
   height: fit-content;
   background-color: rgb(255, 255, 255);
   opacity: 1;
-  animation: show 0.7s ease;
+  animation: show 0.3s ease;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.093),
     -2px -2px 10px rgba(0, 0, 0, 0.093);
     word-wrap: break-word;
@@ -106,14 +105,34 @@ input[type="checkbox"]:checked::before {
   border-radius: 20px;
   padding: 20px;
   max-width: 600px;
-  width: 100%;
   height: fit-content;
   background-color: rgb(255, 255, 255);
-  animation: hide 0.7s ease;
+  animation: hide 0.3s ease;
   box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.093),
     -2px -2px 10px rgba(0, 0, 0, 0.093);
   word-wrap: break-word;
   margin: 0 auto;
+}
+
+.modalWindow {
+  position: absolute;
+  top: -41%;
+  left: 0%;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 2px 10px 1px #ccc;
+  border-radius: 10px;
+  animation: show 0.3s ease;
+}
+.hiddenModalWindow {
+  position: absolute;
+  top: -41%;
+  left: 0%;
+  padding: 10px;
+  background-color: white;
+  box-shadow: 0 2px 10px 1px #ccc;
+  border-radius: 10px;
+  animation: hide 0.3s ease;
 }
 
 .doneStatus {
@@ -165,12 +184,36 @@ input[type="checkbox"]:checked::before {
   width: 100%;
   display: flex;
   justify-content: space-between;
+  position: relative;
 }
 
 .closeButton {
-  padding: 5px;
-  border-radius: 5px;
+  color: #7f7e7e;
+  padding-bottom: 4px;
+  border-radius: 50px;
+  width: 20px;
+  height: 20px;
   transition: transform 0.25s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.openMoreMenuBtn {
+  color: #7f7e7e;
+  border-radius: 50px;
+  width: 20px;
+  height: 20px;
+  transition: transform 0.25s ease;
+  animation: show 0.3s ease;
+  position: absolute;
+}
+
+.openMoreMenuBtn::before {
+  content: "\022EE";
+  position: absolute;
+  height: 19px;
+  transform: translate(-50%, -50%);
 }
 
 .delButton {
@@ -181,12 +224,13 @@ input[type="checkbox"]:checked::before {
   transition: transform 0.25s ease;
 }
 
-.closeButton:hover,
+/* .closeButton:hover,
 .delButton:hover {
   transform: scale(1.1);
-}
+} */
 
 .closeButton:active,
+.openMoreMenuBtn:active,
 .delButton:active {
   box-shadow: inset 1px 1px 3px black;
 }
@@ -202,7 +246,7 @@ input[type="checkbox"]:checked::before {
 }
 
 @media (max-width:400px) {
-  .todoCard {
+  .todoCard, .hiddenTodoCard {
     max-width: 250px;
   }
 }

@@ -25,7 +25,7 @@ const NewTodoButton = () => {
             !data.hideAddButton ? styles.newTodoBtn : styles.hideNewTodoBtn
           }
         >
-          <p>New Todo</p>
+          <p>+</p>
         </button>
       </div>
     </div>

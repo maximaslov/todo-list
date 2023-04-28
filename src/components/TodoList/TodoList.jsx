@@ -8,12 +8,12 @@ const TodoList = () => {
 
   return (
     <div className={styles.todoListContainer}>
-      <div className={styles.todoItemHeader}>
+      {/* <div className={styles.todoItemHeader}>
         <p>ID</p>
         <p>TITLE</p>
         <p>DESCRIPTION</p>
         <p>STATUS</p>
-      </div>
+      </div> */}
       <div className={styles.todoItems}>
         {data.todos &&
           data.todos.map((e, i) => {

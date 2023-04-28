@@ -5,7 +5,7 @@
   right: 0;
   width: 100%;
   top: 0;
-  padding-top: 10px;
+  padding-top: 20px;
   padding-bottom: 20px;
   z-index: 1;
   height: 50px;
@@ -16,7 +16,7 @@
   width: 125px;
   height: 50px;
   z-index: 2;
-  animation: show 0.7s ease;
+  animation: show 0.3s ease;
 }
 
 @keyframes show {
@@ -33,7 +33,7 @@
 .hiddenNewTodoBtnContainer {
   margin: 0 auto;
   transition: transform 0.25s ease;
-  animation: hide 0.7s ease;
+  animation: hide 0.3s ease;
   opacity: 0;
 }
 
@@ -54,12 +54,11 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 120px;
+  width: 50px;
   height: 50px;
-  border-radius: 10px;
+  border-radius: 50px;
   background-color: rgba(0, 157, 255, 0.773);
   margin: 0 auto;
-  
 }
 
 .hideNewTodoBtn {
@@ -69,19 +68,22 @@
 
 .newTodoBtn p {
   color: white;
-  font-size: 20px;
+  font-size: 30px;
   transition: transform 0.5s;
   user-select: none;
 }
 
 .newTodoBtnContainer:hover {
-  transition: transform 0.25ms ease;
+  transition: transform 0.25s ease;
 }
 
 .newTodoBtn:hover p {
-  transform: scale(1.2);
+  transform: scale(1.5);
 }
 
-.newTodoBtnContainer:active {
+.newTodoBtn:active {
   box-shadow: inset 5px 5px 20px rgba(0, 0, 0, 0.591);
 }
+/* .newTodoBtnContainer:active {
+  box-shadow: inset 5px 5px 20px rgba(0, 0, 0, 0.591);
+} */

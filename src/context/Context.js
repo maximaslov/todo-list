@@ -45,7 +45,7 @@ const Context = (props) => {
     setShowNewTodoItemBtn(false);
     setTimeout(() => {
       setHideAddButton(true)
-    }, 700);
+    }, 300);
   }
 
   const closeForm = () => {
@@ -53,7 +53,7 @@ const Context = (props) => {
     setShowTodoFormBox(false);
     setTimeout(() => {
       setShowTodoForm(false);
-    }, 700);
+    }, 300);
   }
 
   const onFormSubmit = (newTodoList) => {
@@ -72,7 +72,7 @@ const Context = (props) => {
     showNewTodoButton();
     setTimeout(() => {
       setShowTodoCardContainer(false);
-    }, 700);
+    }, 300);
   }
 
   const showError = (err) => {
