@@ -1,8 +1,9 @@
 import React, { useState, createContext, useEffect } from "react";
 
-export const TodosContext = createContext();
+export const TodoContext = createContext();
 
 const Context = (props) => {
+  const [language, setLanguage] = useState("en");
   const [showNewTodoItemBtn, setShowNewTodoItemBtn] = useState(true);
   const [showNewTodoForm, setShowTodoForm] = useState(false);
   const [showTodoCardContainer, setShowTodoCardContainer] = useState(false);
@@ -20,51 +21,51 @@ const Context = (props) => {
   });
 
   const todoStorage = window.localStorage;
-  const [todos, setTodos] = useState(() => {
+  const [todoItems, setTodoItems] = useState(() => {
     const todoData = todoStorage.getItem("storageTodoList");
     return todoData ? JSON.parse(todoData) : [];
   });
-   
-  const updateTodos = (todo) => {
+
+  const updateTodoItems = (todo) => {
     todoStorage.setItem("storageTodoList", JSON.stringify(todo));
-    setTodos(todo)
-  }
+    setTodoItems(todo);
+  };
 
   const openTodoCard = () => {
     hideNewTodoButton();
     setShowTodoCardContainer(true);
     setShowTodoCard(true);
-  }
-  
+  };
+
   const showNewTodoButton = () => {
     setShowNewTodoItemBtn(true);
     setHideAddButton(false);
-  }
+  };
 
   const hideNewTodoButton = () => {
     setShowNewTodoItemBtn(false);
     setTimeout(() => {
-      setHideAddButton(true)
+      setHideAddButton(true);
     }, 300);
-  }
+  };
 
   const closeForm = () => {
-    showNewTodoButton()
+    showNewTodoButton();
     setShowTodoFormBox(false);
     setTimeout(() => {
       setShowTodoForm(false);
     }, 300);
-  }
+  };
 
   const onFormSubmit = (newTodoList) => {
-    updateTodos(newTodoList);
+    updateTodoItems(newTodoList);
     closeForm();
-  }
+  };
 
   const showForm = () => {
     setShowTodoForm(true);
     setShowTodoFormBox(true);
-  }
+  };
 
   const closeTodoCard = () => {
     setShowTodoCard(false);
@@ -73,14 +74,14 @@ const Context = (props) => {
     setTimeout(() => {
       setShowTodoCardContainer(false);
     }, 300);
-  }
+  };
 
   const showError = (err) => {
     setErrorMessage(err.message);
     setTimeout(() => {
-      setErrorMessage(null)
+      setErrorMessage(null);
     }, 2900);
-  }
+  };
 
   useEffect(() => {
     const handleResize = () => {
@@ -104,8 +105,8 @@ const Context = (props) => {
     setShowNewTodoItemBtn,
     showNewTodoForm,
     setShowTodoForm,
-    todos,
-    updateTodos,
+    todoItems,
+    updateTodoItems,
     todoStorage,
     showTodoCard,
     setShowTodoCard,
@@ -124,16 +125,18 @@ const Context = (props) => {
     showForm,
     openTodoCard,
     closeTodoCard,
-    errorMessage, 
+    errorMessage,
     setErrorMessage,
     showError,
-    maxLength
+    maxLength,
+    language,
+    setLanguage,
   };
 
   return (
-    <TodosContext.Provider value={value}>
+    <TodoContext.Provider value={value}>
       {props.children}
-    </TodosContext.Provider>
+    </TodoContext.Provider>
   );
 };
 

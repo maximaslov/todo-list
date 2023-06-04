@@ -1,15 +1,18 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import styles from "./NewTodoForm.module.css";
-import { TodosContext } from "../../context/Context";
+import { TodoContext } from "../../context/Context";
 import { todoFormSchema } from "./todoFormSchema";
 import { useFormik } from "formik";
+import Input from "../../ui/Input/Input";
+import Textarea from "../../ui/Textarea/Textarea";
+import Button from "../../ui/Button/Button";
 
 const NewTodoForm = () => {
-  const data = useContext(TodosContext);
-  const [touchedFields, setTouchedFields] = useState({});
+  const data = useContext(TodoContext);
+  const { todoItems, onFormSubmit, showError, closeForm } = data;
 
   const onClose = () => {
-    data.closeForm();
+    closeForm();
   };
 
   const formik = useFormik({
@@ -23,72 +26,38 @@ const NewTodoForm = () => {
             description: values.description,
             status: false,
           };
-          const newTodoList = [...data.todos, newTodo];
-          data.onFormSubmit(newTodoList);
+          const newTodoList = [...todoItems, newTodo];
+          onFormSubmit(newTodoList);
           resetForm();
         })
         .catch((err) => {
-          data.showError(err);
+          showError(err);
         });
     },
   });
 
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    setTouchedFields((prevState) => ({ ...prevState, [name]: value }));
-  };
-
-  const isTitleError = formik.errors.title && touchedFields.title;
-  const isDescriptionError =
-    formik.errors.description && touchedFields.description;
-
   return (
-    <div className={styles.todoFormContaner}>
+    <div className={styles.todoFormContainer}>
       <div
         className={
-          data.showTodoFormBox ? styles.todoFormBox : styles.hidenTodoFormBox
+          data.showTodoFormBox ? styles.todoFormBox : styles.hiddenTodoFormBox
         }
       >
         <form className={styles.todoForm} onSubmit={formik.handleSubmit}>
           <div>
-            <input
-              className={isTitleError ? styles.inputError : styles.input}
-              value={formik.values.title}
-              type="text"
-              name="title"
-              placeholder={
-                isTitleError
-                  ? "The field must not be empty"
-                  : "Enter todo title"
-              }
-              onChange={formik.handleChange}
-              onBlur={handleBlur}
-            />
-            <input
-              className={isDescriptionError ? styles.inputError : styles.input}
+            <Input value={formik.values.title} onChange={formik.handleChange} />
+            <Textarea
               value={formik.values.description}
-              type="text"
-              name="description"
-              placeholder={
-                isDescriptionError
-                  ? "The field must not be empty "
-                  : "Enter todo description"
-              }
               onChange={formik.handleChange}
-              onBlur={handleBlur}
             />
           </div>
-          <button
-            className={styles.todoBtn}
+          <Button
             disabled={!formik.values.title || !formik.values.description}
-            type={"submit"}
-          >
-            Create
-          </button>
+            type="submit"
+            label="Create"
+          />
         </form>
-        <button onClick={onClose} className={styles.todoBtn}>
-          Cancel
-        </button>
+        <Button onClick={onClose} label="Cancel" />
       </div>
     </div>
   );

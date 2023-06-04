@@ -1,31 +1,43 @@
 import React, { useContext } from "react";
-import { TodosContext } from "../../../context/Context";
+import { TodoContext } from "../../../context/Context";
 import styles from "./TodoItem.module.css";
 
 const TodoItem = ({ title, description, id, status }) => {
-  const data = useContext(TodosContext);
+  const data = useContext(TodoContext);
+
+  const {
+    showTodoCardContainer,
+    showNewTodoForm,
+    setTodoCardData,
+    openTodoCard,
+    closeTodoCard,
+    showTodoCard,
+    todoItems,
+    updateTodoItems,
+    maxLength,
+  } = data;
 
   const onTodoItemClick = () => {
-    if (!data.showTodoCardContainer && !data.showNewTodoForm) {
-      data.setTodoCardData({
+    if (!showTodoCardContainer && !showNewTodoForm) {
+      setTodoCardData({
         title,
         description,
         id,
         status,
       });
-      data.openTodoCard();
+      openTodoCard();
     } else {
-      data.closeTodoCard();
+      closeTodoCard();
     }
   };
 
   const onCheckboxClick = (elem) => {
     elem.stopPropagation();
-    if (!data.showNewTodoForm && !data.showTodoCard) {
-      const newTodos = data.todos.map((todo, i) =>
-        i === id - 1 ? { ...todo, status: !todo.status } : todo
+    if (!showNewTodoForm && !showTodoCard) {
+      const newTodoItems = todoItems.map((todo, i) =>
+        i === id ? { ...todo, status: !todo.status } : todo
       );
-      data.updateTodos(newTodos);
+      updateTodoItems(newTodoItems);
     }
   };
 
@@ -33,20 +45,20 @@ const TodoItem = ({ title, description, id, status }) => {
     <div onClick={onTodoItemClick} className={styles.todoItemContainer}>
       <p>{id}</p>
       <p className={styles.itemTitle}>
-        {title.length > data.maxLength
-          ? title.slice(0, data.maxLength - 1) + "..."
+        {title.length > maxLength
+          ? title.slice(0, maxLength - 1) + "..."
           : title}
       </p>
 
       <p className={styles.itemDescription}>
-        {description.length > data.maxLength
-          ? description.slice(0, data.maxLength - 1) + "..."
+        {description.length > maxLength
+          ? description.slice(0, maxLength - 1) + "..."
           : description}
       </p>
       <div className={styles.input}>
         <input
           className={styles.checkbox}
-          onClick={(e) => e.stopPropagation()}
+          onClick={(event) => event.stopPropagation()}
           checked={status}
           onChange={onCheckboxClick}
           type="checkbox"

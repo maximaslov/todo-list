@@ -1,44 +1,45 @@
 import React, { useContext } from "react";
-import { TodosContext } from "../../../context/Context";
+import { TodoContext } from "../../../context/Context";
 import styles from "./TodoItem.module.css";
 import { useState } from "react";
 import { useRef } from "react";
 
 const TodoCard = () => {
-  const data = useContext(TodosContext);
-  const { title, description, id, status } = data.todoCardData;
+  const data = useContext(TodoContext);
+  const { todoCardData, updateTodoItems, closeTodoCard, showTodoCard, todoItems } = data;
+  const { title, description, id, status } = todoCardData;
 
   const [showMoreMenu, setShowMoreMenu] = useState(false);
-  const [showMoreMenuContainer, setShowMoreMenuontainer] = useState(false);
+  const [showMoreMenuContainer, setShowMoreMenuContainer] = useState(false);
   const moreBtn = useRef(null)
 
   const openMoreMenu = () => {
-    setShowMoreMenuontainer(true);
+    setShowMoreMenuContainer(true);
     setShowMoreMenu(true);
   };
 
-  const closeMoreMenu = (e) => {
-    if(e.target !== moreBtn.current){
+  const closeMoreMenu = (event) => {
+    if(event.target !== moreBtn.current){
       setShowMoreMenu(false)
       setTimeout(() => {
-        setShowMoreMenuontainer(false)
+        setShowMoreMenuContainer(false)
       }, 300);
     }
   }
   const onDeleteButtonClick = () => {
-    const newTodos = data.todos.filter((todo, i) => i !== id - 1);
-    data.updateTodos(newTodos);
-    data.closeTodoCard();
+    const newTodoItems = todoItems.filter((todo, index) => index !== id);
+    updateTodoItems(newTodoItems);
+    closeTodoCard();
   };
 
   const onCloseCardButtonClick = () => {
-    data.closeTodoCard();
+    closeTodoCard();
   };
 
   return (
     <div className={styles.todoCardContainer} onClick={closeMoreMenu}>
       <div
-        className={data.showTodoCard ? styles.todoCard : styles.hiddenTodoCard}
+        className={showTodoCard ? styles.todoCard : styles.hiddenTodoCard}
       >
         <div className={styles.buttons}>
         {!showMoreMenuContainer && (
